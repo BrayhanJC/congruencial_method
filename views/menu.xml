@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+		<menuitem name="Método Congruencial" id="menu_method" sequence="50" web_icon="congruencial_method,static/src/img/method.png"/>
+
+		<menuitem id="menu_methods" name="Método Congruencial" parent="menu_method"/>
+
+		<menuitem id="menu_congruencial_method" name="Método Congruencial Multiplicativo" parent="menu_methods" action="action_congruencial_method"/>
+
+		
+</odoo>

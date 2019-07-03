@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+	<record id="congruencial_method_view_form" model="ir.ui.view">
+		<field name="name">congruencial.method.form</field>
+		<field name="model">congruencial.method</field>
+		<field name="arch" type="xml">
+			<form>
+
+				<div  ALIGN="justify" class="font-weight-bold">
+					<br/>
+					<br/>
+					
+						<p ALIGN = "center" class="font-weight-bold"> <strong>Método Congruencial Multiplicativo</strong></p>
+					
+
+					<br/>
+
+					<p>
+					Con este método vamos a poder generar diversos números aleatorios, vemos a continuación unas reglas para poder generar números aleaorios sin que estos se repitan.
+					</p>
+
+					<br/>
+						<ul> 
+							<li ALIGN="justify">a= 5 + 8k  ó  a= 3 + 8k. Se recomienda los siguientes valores [1, 5, 9, 13, 17, 21, 25, 29]</li> 
+ 
+							<li>Xo sea impar > 0.</li>
+
+							<li>El módulo (m), sea igual igual a una potencia mayor que 2, es decir, 4, 8, 16, 32, 64, 128, 256...
+							Por otro lado, se puede hacer uso de la siguiente fórmula 2^b, siendo b > 1.
+							Se recomienda que este valor sea mayor que el Xo y a.</li>
+						</ul> 
+						<br/>
+				</div>
+
+
+				
+	
+						<div class="oe_title">
+							<group string="Datos Método">
+				   
+							</group>
+						</div>
+
+					<group>
+
+						<group >
+							<field name="data_number"/>
+							<field name="module" />
+							
+						</group>
+
+
+						<group >
+							<field name="seed"/>
+							<field name="multiplicity_constant"/>
+							
+						</group>
+
+					</group>
+
+ 						<group >
+ 							<button name="load_random_numbers" string="Generar" type="object" class="btn-primary"/>
+ 						</group>
+ 						
+ 						<group >
+							<field name="congruencial_method_data_ids" nolabel="1">
+								<tree>
+									<field name="data_number"/>
+									<field name="new_seed"/>
+									<field name="random_number"/>
+								</tree>
+
+							</field>
+							
+						</group>
+
+ 						<group col="4">
+
+							<field name="test_method" widget="selection"/>
+							<field name="confidence_interval"/>
+
+						</group>
+
+
+
+				<div  >
+					<br/>
+					<br/>
+						<group attrs="{'invisible':[('test_method','not in', ['half'])]}">
+							<p ALIGN = "center" class="font-weight-bold"><strong>Prueba del Punto Medio</strong></p>
+						</group>
+
+						<group attrs="{'invisible':[('test_method','not in', ['chi'])]}">
+							<p ALIGN = "center" class="font-weight-bold"><strong>Prueba Chi Cuadrado</strong></p>
+						</group>
+				
+
+
+
+					<group attrs="{'invisible':[('test_method','not in', ['half'])]}">
+						<p>
+							<field name="range_half" nolabel="1"/> 
+						</p>
+					</group>
+
+					<group attrs="{'invisible':[('test_method','not in', ['chi'])]}">
+						<p>
+							El rango de esta prueba esta en:
+							Por lo cual indica que si/no tiene uniformidad en los datos.
+						</p>
+					</group>
+
+					<br/>
+						
+				</div>
+
+
+
+
+
+
+
+
+
+			</form>
+		</field>
+	</record>
+
+
+
+	  <record id="action_congruencial_method" model="ir.actions.act_window">
+		<field name="name">Método Congruencial</field>
+		<field name="res_model">congruencial.method</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="congruencial_method_view_form"/>
+
+		<field name="help" type="html">
+		  <p class="oe_view_nocontent_create">
+			Click para realizar el método congruencial multiplicativo
+		  </p>
+		</field>
+	</record>
+
+	<record id="action_congruencial_method_view_form" model="ir.actions.act_window.view">
+		<field name="act_window_id" ref="action_congruencial_method"/>
+		<field name="sequence" eval="3"/>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="congruencial_method_view_form"/>
+	</record>
+
+
+
+</odoo>
