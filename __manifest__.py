@@ -39,7 +39,7 @@
 	Módulo que permite generar números aleatorios a través del método Congruencial Multiplicativo, además de esto realiza dos tipos de pruebas para estos números generados los cuales son:
 
 	-	Prueba del Punto Medio
-	-	Prueba de Kolmogórov-Smirnov
+	-	Prueba de Ji Cuadrado
 
 
 	""",

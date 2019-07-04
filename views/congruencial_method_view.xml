@@ -78,7 +78,8 @@
  						<group col="4">
 
 							<field name="test_method" widget="radio"/>
-							<field name="confidence_interval"/>
+							<field name="confidence_interval" attrs="{'invisible':[('test_method','not in', ['half'])]}"/>
+							<field name="confidence_level" attrs="{'invisible':[('test_method','not in', ['chi'])]}"/>
 
 						</group>
 
@@ -93,21 +94,25 @@
 
 						<group attrs="{'invisible':[('test_method','not in', ['chi'])]}">
 							<p ALIGN = "center" class="font-weight-bold"><strong>Prueba Chi Cuadrado</strong></p>
+							<p ALIGN = "center" class="font-weight-bold"><strong>Para esta prueba se usan 5 clases</strong></p>
 						</group>
 				
 
 
 
 					<group attrs="{'invisible':[('test_method','not in', ['half'])]}">
-						<p>
-							<field name="range_half" nolabel="1"/> 
+						<p ALIGN = "center" class="font-weight-bold">
+							<strong>
+								<field name="range_half" nolabel="1" readonly='1'/> 
+							</strong>
 						</p>
 					</group>
 
 					<group attrs="{'invisible':[('test_method','not in', ['chi'])]}">
-						<p>
-							El rango de esta prueba esta en:
-							Por lo cual indica que si/no tiene uniformidad en los datos.
+						<p ALIGN = "center" class="font-weight-bold">
+							<strong>
+								<field name="chi_cuadrado_result" nolabel="1" readonly='1'/> 
+							</strong>
 						</p>
 					</group>
 
