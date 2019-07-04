@@ -42,7 +42,7 @@ class CongruencialMethodData(models.Model):
 	#Operación con el módulo (Xo * a)Mod m
 	#module = fields.Float(string=u'(Xo * a)Mod m', required=True)
 	#Generación de la nueva semilla -> module*m
-	new_seed = fields.Integer(string=u'Xo', required=True)
+	new_seed = fields.Float(string=u'Xo', required=True)
 	#Número aleatorio
 	random_number = fields.Float(string=u'Número Aleatorio', required=True, digits=(12,6))
 

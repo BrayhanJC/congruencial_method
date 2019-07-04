@@ -103,6 +103,7 @@ class CongruencialMethod(models.Model):
 				rn = m - 1
 				random_number = (new_Xo / rn)
 
+
 				Xo= new_Xo
 
 				vals = {
@@ -132,7 +133,7 @@ class CongruencialMethod(models.Model):
 		"""
 			Calcula los números aleatorios por el metodo congruencial multiplicativo
 		"""
-		_logger.info("entra")
+
 		if self.data_number and self.module and self.seed and self.multiplicity_constant:
 
 			data = []
@@ -140,9 +141,7 @@ class CongruencialMethod(models.Model):
 			m = float(self.module)
 			Xo= float(self.seed)
 			a = float(self.multiplicity_constant)
-
-			for x in range(1, int(10**10)):
-
+			for x in range(1, 10**4):
 
 				load_Xo = ((Xo * a)/m)
 				new_Xo = (abs(load_Xo) - abs(int(load_Xo))) * m
@@ -155,8 +154,8 @@ class CongruencialMethod(models.Model):
 				if new_Xo in data:
 					self.show_message_period = u"El periodo es de " + str(iterator) 
 					break
-
-				data.append(Xo)
+	
+				data.append(new_Xo)
 				iterator += 1
 				
 
