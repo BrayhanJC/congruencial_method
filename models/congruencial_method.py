@@ -133,7 +133,6 @@ class CongruencialMethod(models.Model):
 		"""
 			Calcula los números aleatorios por el metodo congruencial multiplicativo
 		"""
-
 		if self.data_number and self.module and self.seed and self.multiplicity_constant:
 
 			data = []
@@ -151,11 +150,13 @@ class CongruencialMethod(models.Model):
 
 				Xo= new_Xo
 
-				if new_Xo in data:
+				_logger.info(random_number)
+
+				if round(random_number,6) in data:
 					self.show_message_period = u"El periodo es de " + str(iterator) 
 					break
 	
-				data.append(new_Xo)
+				data.append(round(random_number,6))
 				iterator += 1
 				
 
