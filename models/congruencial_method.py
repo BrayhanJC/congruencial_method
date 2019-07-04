@@ -31,6 +31,7 @@ from odoo import modules
 from math import sqrt
 import statistics as stats
 import math
+import threading
 
 class CongruencialMethod(models.Model):
 
@@ -77,14 +78,12 @@ class CongruencialMethod(models.Model):
 	confidence_level = fields.Selection(load_interval_level_confidence(), String="Nivel de Confianza")
 	range_half = fields.Char(String="Rango")
 	chi_cuadrado_result = fields.Char(String="Rango")
+	show_message_period = fields.Char(string = 'Period')
 	test_method = fields.Selection([('chi', "Prueba de Ji Cuadrado"), ('half', "Prueba de la Media")], String="Prueba")
 
-
-
-
-
 	@api.depends('data_number', 'module', 'seed', 'multiplicity_constant')
-	def load_random_numbers(self):
+	def calculate_numbers(self):
+
 		"""
 			Calcula los números aleatorios por el metodo congruencial multiplicativo
 		"""
@@ -116,6 +115,51 @@ class CongruencialMethod(models.Model):
 				data.append((0,_, vals))
 			self.congruencial_method_data_ids = None
 			self.congruencial_method_data_ids = data
+
+	
+	def load_random_numbers(self):
+
+			t = threading.Thread(target=self.calculate_numbers())
+			t.start()
+			t = threading.Thread(target=self.calculate_period())
+			t.start()
+			
+
+
+
+	@api.depends('data_number', 'module', 'seed', 'multiplicity_constant')
+	def calculate_period(self):
+		"""
+			Calcula los números aleatorios por el metodo congruencial multiplicativo
+		"""
+		_logger.info("entra")
+		if self.data_number and self.module and self.seed and self.multiplicity_constant:
+
+			data = []
+			iterator = 1
+			m = float(self.module)
+			Xo= float(self.seed)
+			a = float(self.multiplicity_constant)
+
+			for x in range(1, int(10**10)):
+
+
+				load_Xo = ((Xo * a)/m)
+				new_Xo = (abs(load_Xo) - abs(int(load_Xo))) * m
+
+				rn = m - 1
+				random_number = (new_Xo / rn)
+
+				Xo= new_Xo
+
+				if new_Xo in data:
+					self.show_message_period = u"El periodo es de " + str(iterator) 
+					break
+
+				data.append(Xo)
+				iterator += 1
+				
+
 
 
 	def load_numbers(self):
