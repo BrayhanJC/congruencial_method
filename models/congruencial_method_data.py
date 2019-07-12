@@ -44,7 +44,7 @@ class CongruencialMethodData(models.Model):
 	#Generación de la nueva semilla -> module*m
 	new_seed = fields.Float(string=u'Xo', required=True)
 	#Número aleatorio
-	random_number = fields.Float(string=u'Número Aleatorio', required=True, digits=(12,6))
+	random_number = fields.Float(string=u'Número Aleatorio', required=True, digits=(12,4))
 
 
 CongruencialMethodData()

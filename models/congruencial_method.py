@@ -63,7 +63,22 @@ class CongruencialMethod(models.Model):
 		data.append((0.25, 0.25))
 		data.append((0.30, 0.30))
 		data.append((0.35, 0.35))
-		data.append((0.04, 0.04))
+		data.append((0.4, 0.4))
+		data.append((0.45, 0.45))
+		data.append((0.5, 0.5))
+		data.append((0.55, 0.55))
+		data.append((0.6, 0.6))
+		data.append((0.65, 0.65))
+		data.append((0.7, 0.7))
+		data.append((0.75, 0.75))
+		data.append((0.8, 0.8))
+		data.append((0.85, 0.85))
+		data.append((0.90, 0.90))
+		data.append((0.95, 0.95))
+		data.append((0.975, 0.975))
+		data.append((0.98, 0.98))
+		data.append((0.99, 0.99))
+		data.append((0.995, 0.995))
 		return data
 
 
@@ -110,7 +125,7 @@ class CongruencialMethod(models.Model):
 
 				'data_number': x,
 				'new_seed': new_Xo,
-				'random_number': random_number
+				'random_number': round(random_number, 4)
 				}
 
 				data.append((0,_, vals))
@@ -140,7 +155,7 @@ class CongruencialMethod(models.Model):
 			m = float(self.module)
 			Xo= float(self.seed)
 			a = float(self.multiplicity_constant)
-			for x in range(1, 10**4):
+			for x in range(1, 10**6):
 
 				load_Xo = ((Xo * a)/m)
 				new_Xo = (abs(load_Xo) - abs(int(load_Xo))) * m
@@ -152,11 +167,11 @@ class CongruencialMethod(models.Model):
 
 				_logger.info(random_number)
 
-				if round(random_number,6) in data:
+				if round(random_number,4) in data:
 					self.show_message_period = u"El periodo es de " + str(iterator) 
 					break
 	
-				data.append(round(random_number,6))
+				data.append(round(random_number,4))
 				iterator += 1
 				
 
@@ -397,6 +412,65 @@ class CongruencialMethod(models.Model):
 
 			d_teorico = 4.045
 
+		elif confidence_level == 0.45:
+
+			d_teorico = 3.687
+
+		elif confidence_level == 0.5:
+
+			d_teorico = 3.357
+
+		elif confidence_level == 0.55:
+
+			d_teorico = 3.047
+
+		elif confidence_level == 0.6:
+
+			d_teorico = 2.753
+
+		elif confidence_level == 0.65:
+
+			d_teorico = 2.470
+
+		elif confidence_level == 0.7:
+
+			d_teorico = 2.195
+
+		elif confidence_level == 0.75:
+
+			d_teorico = 1.923
+
+		elif confidence_level == 0.8:
+
+			d_teorico = 1.649
+
+		elif confidence_level == 0.85:
+
+			d_teorico = 1.366
+
+		elif confidence_level == 0.90:
+
+			d_teorico = 1.064
+
+		elif confidence_level == 0.95:
+
+			d_teorico = 0.711
+
+		elif confidence_level == 0.975:
+
+			d_teorico = 0.484
+
+		elif confidence_level == 0.98:
+
+			d_teorico = 0.429
+
+		elif confidence_level == 0.99:
+
+			d_teorico = 0.297
+
+		elif confidence_level == 0.995:
+
+			d_teorico = 0.207
 
 		return d_teorico	
 
